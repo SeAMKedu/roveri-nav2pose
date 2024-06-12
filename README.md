@@ -54,6 +54,30 @@ TurtleBotin suurin piirtein kulkema reitti on esitetty punaisella katkoviivalla 
 
 ![labra](/images/labra.png)
 
+## Ohjelmistoriippuvuudet
+
+Sovellus on kehitty käyttämällä ROS2:n Humble-versiota.
+
+Asenna tarvittavat TurtleBot 4 -ohjelmistopaketit:
+
+[https://turtlebot.github.io/turtlebot4-user-manual/software/turtlebot4_common.html](https://turtlebot.github.io/turtlebot4-user-manual/software/turtlebot4_common.html)
+
+## Sovelluksen asennus
+
+Lataa ensin sovelluksen lähdekoodi ROS2 workspace -kansion *src*-alikansioon.
+```
+$ cd myROS2workspace/src/
+$ git clone https://github.com/SeAMKedu/roveri-nav2pose.git
+```
+
+Nimeä sovelluksen kansio uudestaan: *roveri-nav2pose* -> *nav2pose*.
+
+Siirry ROS2 workspace -kansion juureen ja käännä sovellus *colcon*-työkalulla:
+```
+$ cd ..
+$ colcon build --packages-select nav2pose
+```
+
 ## Sovelluksen ajaminen
 
 Ennen kuin itse *na2pose*-sovellus käynnistetään, on käynnistettävä paikannus, Nav2-navigointijärjestelmä, ja tietenkin socket-palvelin.
@@ -65,17 +89,17 @@ Jos karttaa ei ole saatavilla, se voidaan luoda SLAM-algoritmilla TurtleBotin ko
 [https://turtlebot.github.io/turtlebot4-user-manual/tutorials/generate_map.html](https://turtlebot.github.io/turtlebot4-user-manual/tutorials/generate_map.html)
 
 ```
-ros2 launch turtlebot4_navigation localization.launch.py map:=robolabra.yaml
+$ ros2 launch turtlebot4_navigation localization.launch.py map:=robolabra.yaml
 ```
 
 Nav2-navigointijärjestelmä käynnistetään toisessa terminaalissa komennolla:
 ```
-ros2 launch turtlebot4_navigation nav2.launch.py
+$ ros2 launch turtlebot4_navigation nav2.launch.py
 ```
 
-Socket-palvelin käynnistetään kolmannessa terminaalissa komennolla
+[Socket-palvelin](https://github.com/SeAMKedu/roveri-server-socket) käynnistetään kolmannessa terminaalissa komennolla
 ```
-python3 sockserver.py
+$ python3 sockserver.py
 ```
 
 Sovellus käynnistetään neljännessä terminaalissa alla olevilla komennoilla.
