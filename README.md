@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/813589064.svg)](https://zenodo.org/doi/10.5281/zenodo.11610015)
+
 ![roveri](/images/roveri.svg)
 
 # Nav2pose
